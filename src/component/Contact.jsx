@@ -1,5 +1,7 @@
 import * as React from "react"
 import { motion } from "framer-motion"
+import { useContext } from "react"
+import { LanguageContext } from "../context/LanguageContext"
 import {
   Carousel,
   CarouselContent,
@@ -10,6 +12,7 @@ import {
 import { Card, CardContent } from "@/components/ui/card"
 
 export default function Contact() {
+  const { t } = useContext(LanguageContext)
   const [activeIndex, setActiveIndex] = React.useState(0)
   const [api, setApi] = React.useState(null)
 
@@ -60,7 +63,7 @@ export default function Contact() {
             transition={{ delay: 0.2 }}
             className="text-[#64ffda] font-mono text-sm tracking-widest"
           >
-            RESTONS EN CONTACT
+            {t('stayInTouch')}
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -68,7 +71,7 @@ export default function Contact() {
             transition={{ delay: 0.3 }}
             className="text-4xl md:text-5xl font-bold text-[#e6f1ff] mt-2"
           >
-            Me Contacter
+            {t('contactMe')}
           </motion.h2>
           <motion.div
             initial={{ width: 0 }}
@@ -102,7 +105,7 @@ export default function Contact() {
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end justify-center pb-8">
                           <div className="bg-gradient-to-r from-black/40 to-black/20 backdrop-blur-sm px-6 py-3 rounded-lg border border-white/20">
                             <span className="text-white font-bold text-xl tracking-wide drop-shadow-2xl block">
-                              Basé à Bayonne
+                              {t('basedInContact')}
                             </span>
                           </div>
                         </div>
@@ -138,7 +141,7 @@ export default function Contact() {
         href="mailto:metchecopar0@gmail.com"
         className="inline-block px-8 py-4 border-2 border-[#64ffda] text-[#64ffda] font-mono rounded-lg hover:bg-[#64ffda] hover:text-[#0a192f] transition-all duration-300 font-semibold"
       >
-        Envoyer un mail ici
+        {t('sendEmail')}
       </a>
     </section>
   )

@@ -1,31 +1,35 @@
 import { Github, ExternalLink, Folder } from "lucide-react";
 import { motion } from "framer-motion";
+import { useContext } from "react";
+import { LanguageContext } from "../context/LanguageContext";
 
 export default function Projects() {
+  const { t } = useContext(LanguageContext);
+  
   const projects = [
     {
-      title: "Moteur de recherche de CVs",
-      tag: "Projet de Stage - CVA Group",
-      desc: "Développement d'une application web et d'un moteur d'indexation en Python pour automatiser le tri de CVs.",
+      titleKey: "cvSearchEngine",
+      tagKey: "cvSearchTag",
+      descKey: "cvSearchDesc",
       tech: ["Python","Docker","Elastic","Streamlit"],
     },
     {
-      title: "GureKultura",
-      tag: "Projet de cours - BUT 2",
-      desc: "Application web responsive qui promeut divers événements au sein de la région Basque.",
+      titleKey: "gureKultura",
+      tagKey: "gureKulturaTag",
+      descKey: "gureKulturaDesc",
       tech: ["Twig","Tailwind CSS","HTML/CSS","JavaScript", "MySQL"],
       github: "https://github.com/LilouDUFAU/GureKultura"
     },
     {
-      title: "Avizons",
-      tag: "Projet de cours - BUT 3",
-      desc: "L'application web de datavisualisation des données complexes (données massives de l'IFREMER) pour que n'importe quel utilisateur puisse comprendre les tendances de la pêche.",
+      titleKey: "avizons",
+      tagKey: "avizonsTag",
+      descKey: "avizonsDesc",
       tech: ["Angular","Echarts","Leaflet", "FastAPI", "PostgreSQL", "PostGis"],
     },
     {
-      title: "Mon portfolio",
-      tag: "Projet personnel",
-      desc: "Ce portfolio que vous consultez actuellement, développé avec React et Tailwind CSS, pour présenter mes projets et compétences de manière moderne et responsive.",
+      titleKey: "myPortfolioTitle",
+      tagKey: "myPortfolioTag",
+      descKey: "myPortfolioDesc",
       tech: ["React","Tailwind CSS","JavaScript","Vite"],
       github: "https://github.com/MaximeETCHECOPAR/portfolio-maxime"
     }
@@ -47,7 +51,7 @@ export default function Projects() {
             transition={{ delay: 0.3 }}
             className="text-4xl md:text-5xl font-bold text-[#e6f1ff] mt-2"
           >
-            Mes Projets
+            {t('myProjects')}
           </motion.h2>
           <motion.div
             initial={{ width: 0 }}
@@ -83,9 +87,9 @@ export default function Projects() {
                 </div>
 
                 <div className="flex-1">
-                  <div className="text-sm text-blue-400 font-mono mb-1">{p.tag}</div>
-                  <h3 className="text-2xl font-bold text-white mb-2">{p.title}</h3>
-                  <p className="text-slate-300 mb-6 leading-relaxed">{p.desc}</p>
+                  <div className="text-sm text-blue-400 font-mono mb-1">{t(p.tagKey)}</div>
+                  <h3 className="text-2xl font-bold text-white mb-2">{t(p.titleKey)}</h3>
+                  <p className="text-slate-300 mb-6 leading-relaxed">{t(p.descKey)}</p>
                   
                   <div className="flex flex-wrap gap-3 mb-6">
                     {p.tech.map((t, idx) => (

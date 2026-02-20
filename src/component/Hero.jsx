@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import { motion } from "framer-motion";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Info, Lock } from "lucide-react";
+import { LanguageContext } from "../context/LanguageContext";
 
 export default function Hero() {
+  const { t } = useContext(LanguageContext);
   const [init, setInit] = useState(false);
   const [showHash, setShowHash] = useState(false);
   const [fileHash, setFileHash] = useState("");
@@ -34,9 +36,9 @@ export default function Hero() {
   }, []);
 
   const data = {
-    profil: "Étudiant en BUT Informatique, je développe des compétences solides en développement, algorithmique et gestion de projet. Curieux et rigoureux, je m'investis pleinement dans les projets qui me sont confiés.",
-    formation: "Actuellement en BUT Informatique à l'IUT de Bayonne. J'y apprends les bases de l'ingénierie logicielle, les bases de données et le développement web moderne.",
-    experiences: "Projets académiques en Java, développement d'interfaces en React, et participation à des hackathons locaux."
+    profile: t('profileText'),
+    formation: t('formationText'),
+    experiences: t('experiencesText')
   };
 
   return (
@@ -96,12 +98,12 @@ export default function Hero() {
                 download="CV_ETCHECOPAR_Maxime.pdf"
                 className="inline-block px-6 py-2 border border-[#64ffda] text-[#64ffda] font-mono text-sm rounded hover:bg-[#64ffda]/10 transition-all"
               >
-                Télécharger mon CV
+                {t('downloadCV')}
               </a>
               <div className="group relative cursor-help">
                 <Info size={18} className="text-[#64ffda] hover:text-cyan-300 transition-colors" />
                 <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-[#112240] border border-[#64ffda] text-[#64ffda] text-xs px-3 py-2 rounded whitespace-nowrap z-50">
-                  Téléchargement sécurisé
+                  {t('secure')}
                 </div>
               </div>
               <button
@@ -111,7 +113,7 @@ export default function Hero() {
               >
                 <Lock size={18} className="text-green-400 hover:text-green-300 transition-colors" />
                 <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block bg-[#112240] border border-green-400 text-green-400 text-xs px-3 py-2 rounded whitespace-nowrap z-50">
-                  Vérifier l'intégrité
+                  {t('checkIntegrity')}
                 </div>
               </button>
             </div>
@@ -124,7 +126,7 @@ export default function Hero() {
                 <div className="font-mono font-bold mb-2">SHA-256:</div>
                 <div className="font-mono text-green-300">{fileHash || "Calcul en cours..."}</div>
                 <div className="text-green-400/70 text-xs mt-3">
-                  Vous pouvez vérifier ce hash avec un outil externe pour confirmer l'authenticité du fichier.
+                  {t('verifyHash')}
                 </div>
               </motion.div>
             )}
@@ -138,10 +140,9 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="flex-1 w-full bg-[#112240]/60 backdrop-blur-sm p-8 rounded-xl border border-white/5 shadow-xl"
         >
-          <h2 className="text-3xl font-bold text-white mb-6">À propos de moi</h2>
+          <h2 className="text-3xl font-bold text-white mb-6">{t('aboutMe')}</h2>
           
-          <Tabs defaultValue="profil" className="w-full">
-
+          <Tabs defaultValue="profile" className="w-full">
             {Object.entries(data).map(([key, content]) => (
               <TabsContent key={key} value={key} className="mt-0">
                 <motion.div
@@ -158,7 +159,7 @@ export default function Hero() {
 
           <div className="mt-10 flex gap-4">
             <a href="#projects" className="text-[#64ffda] font-mono text-sm hover:underline">
-              → Voir mes projets
+              {t('seeMyProjects')}
             </a>
           </div>
         </motion.div>

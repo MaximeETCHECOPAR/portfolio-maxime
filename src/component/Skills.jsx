@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { LanguageContext } from '../context/LanguageContext';
 
 export default function Skills() {
+  const { t } = useContext(LanguageContext);
   const [openCategory, setOpenCategory] = useState(null);
 
   const containerVariants = {
@@ -107,7 +109,7 @@ export default function Skills() {
             transition={{ delay: 0.3 }}
             className="text-4xl md:text-5xl font-bold text-[#e6f1ff] mt-2"
           >
-            Compétences
+            {t('mySkills')}
           </motion.h2>
           <motion.div
             initial={{ width: 0 }}
