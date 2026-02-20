@@ -4,6 +4,30 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function Skills() {
   const [openCategory, setOpenCategory] = useState(null);
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.04,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 0, opacity: 0, scale: 0.9 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 260,
+        damping: 20,
+      },
+    },
+  };
+
   const categories = [
     {
       title: 'Frontend',
@@ -14,7 +38,7 @@ export default function Skills() {
         { name: 'HTML/CSS', slug: 'html5' },
         { name: 'Bootstrap', slug: 'bootstrap' },
         { name: 'TailwindCSS', slug: 'tailwindcss' },
-        { name: 'ECharts', slug: 'echarts' },
+        { name: 'ECharts', icon: 'https://raw.githubusercontent.com/apache/echarts-website/asf-site/en/images/favicon.png' },      
       ],
     },
     {
@@ -23,11 +47,10 @@ export default function Skills() {
       items: [
         { name: 'Laravel', slug: 'laravel' },
         { name: 'PHP', slug: 'php' },
-        { name: 'Twig', slug: 'twig' },
+        { name: 'Twig', icon: 'https://twig.symfony.com/images/logo.png' },        
         { name: 'Streamlit', slug: 'streamlit' },
         { name: 'WordPress', slug: 'wordpress' },
         { name: 'Python', slug: 'python' },
-        { name: 'Python (ETL)', slug: 'python' },
       ],
     },
     {
@@ -38,8 +61,8 @@ export default function Skills() {
         { name: 'MongoDB', slug: 'mongodb' },
         { name: 'Elasticsearch', slug: 'elasticsearch' },
         { name: 'PostgreSQL', slug: 'postgresql' },
-        { name: 'PostGIS', slug: 'postgis' },
-      ],
+        { name: 'PostGIS', icon: '/portfolio-maxime/postgis-logo_trans.png' }, 
+        ],
     },
     {
       title: 'DevOps / Tools',
@@ -69,6 +92,7 @@ export default function Skills() {
 
   return (
     <section id="skills" className="py-20 max-w-4xl mx-auto px-4">
+      {/* Titre avec barres animées */}
       <div className="flex items-center gap-4 mb-16">
         <motion.div
           initial={{ width: 0 }}
@@ -77,7 +101,6 @@ export default function Skills() {
           className="h-1 bg-gradient-to-r from-transparent to-[#64ffda]"
         />
         <div className="text-center flex-1">
-
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -104,7 +127,6 @@ export default function Skills() {
       <div className="space-y-4">
         {categories.map((category) => (
           <div key={category.title} className="bg-[#112240] rounded-lg overflow-hidden border border-slate-800">
-            {/* Bouton pour déplier */}
             <button
               onClick={() => toggleCategory(category.title)}
               className="w-full flex items-center justify-between p-6 text-left hover:bg-[#1d2d50] transition-colors group"
@@ -117,7 +139,6 @@ export default function Skills() {
               </span>
             </button>
 
-            {/* Contenu dépliable avec Framer Motion */}
             <AnimatePresence>
               {openCategory === category.title && (
                 <motion.div
@@ -126,34 +147,37 @@ export default function Skills() {
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.3, ease: 'easeInOut' }}
                 >
-                  <div className="px-6 pb-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 border-t border-slate-700/50 pt-6">
+                  {/* Le conteneur avec variants visible/hidden pour le stagger */}
+                  <motion.div 
+                    variants={containerVariants}
+                    initial="hidden"
+                    animate="visible"
+                    className="px-6 pb-6 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 border-t border-slate-700/50 pt-6"
+                  >
                     {category.items.map((item) => {
                       const src = item.icon || `https://cdn.simpleicons.org/${item.slug}`;
                       return (
-                        <div
+                        <motion.div
                           key={item.name}
-                          className="bg-[#0a192f] p-4 rounded flex flex-col items-center justify-center space-y-3 border border-transparent hover:border-[#64ffda]/50 transition-all group"
+                          variants={itemVariants}
+                          whileHover={{ scale: 1.05, borderColor: "rgba(100, 255, 218, 0.5)" }}
+                          className="bg-[#0a192f] p-4 rounded flex flex-col items-center justify-center space-y-3 border border-transparent transition-all group cursor-default"
                         >
-                                <img
-                                  src={src}
-                                  alt={item.name}
-                                  className="h-8 w-8 grayscale group-hover:grayscale-0 transition-all"
-                                  onError={(e) => {
-                                    const initials = item.name
-                                      .split(/\s+/)
-                                      .map((s) => s[0])
-                                      .slice(0, 2)
-                                      .join("")
-                                      .toUpperCase();
-                                    const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64'><rect width='100%' height='100%' fill='%23202a37'/><text x='50%' y='50%' font-size='28' fill='%23cbd5e1' font-family='Inter, system-ui, sans-serif' dominant-baseline='middle' text-anchor='middle'>${initials}</text></svg>`;
-                                    e.currentTarget.src = `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
-                                  }}
-                                />
+                          <img
+                            src={src}
+                            alt={item.name}
+                            className="h-8 w-8 grayscale group-hover:grayscale-0 transition-all object-contain"
+                            onError={(e) => {
+                              const initials = item.name.split(/\s+/).map((s) => s[0]).slice(0, 2).join("").toUpperCase();
+                              const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64'><rect width='100%' height='100%' fill='%23202a37'/><text x='50%' y='50%' font-size='28' fill='%23cbd5e1' font-family='Inter, system-ui, sans-serif' dominant-baseline='middle' text-anchor='middle'>${initials}</text></svg>`;
+                              e.currentTarget.src = `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+                            }}
+                          />
                           <span className="text-xs font-mono text-[#ccd6f6]">{item.name}</span>
-                        </div>
+                        </motion.div>
                       );
                     })}
-                  </div>
+                  </motion.div>
                 </motion.div>
               )}
             </AnimatePresence>
