@@ -6,8 +6,8 @@ import Contact from './component/Contact';
 
 const App = () => {
   return (
-    <div className="min-h-screen bg-[#0a192f] text-[#ccd6f6] px-6 md:px-24 py-12 font-sans">
-      <main className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-[#0a192f] text-[#ccd6f6] font-sans scroll-smooth">
+      <main className="max-w-5xl mx-auto px-6 md:px-12 lg:px-24">
         <Hero />
         <Projects />
         <Skills />
