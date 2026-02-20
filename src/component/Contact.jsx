@@ -1,4 +1,5 @@
 import * as React from "react"
+import { motion } from "framer-motion"
 import {
   Carousel,
   CarouselContent,
@@ -45,8 +46,44 @@ export default function Contact() {
 
   return (
     <section id="contact" className="py-20 text-center flex flex-col items-center">
-      <h3 className="text-[#64ffda] font-mono mb-4 text-sm">Et après ?</h3>
-      <h2 className="text-4xl font-bold text-[#e6f1ff] mb-12">Me contacter</h2>
+      <div className="flex items-center gap-4 mb-16 w-full justify-center">
+        <motion.div
+          initial={{ width: 0 }}
+          whileInView={{ width: 60 }}
+          transition={{ duration: 0.8 }}
+          className="h-1 bg-gradient-to-r from-transparent to-[#64ffda]"
+        />
+        <div className="text-center">
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="text-[#64ffda] font-mono text-sm tracking-widest"
+          >
+            RESTONS EN CONTACT
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="text-4xl md:text-5xl font-bold text-[#e6f1ff] mt-2"
+          >
+            Me Contacter
+          </motion.h2>
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: 120 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="h-1 bg-gradient-to-r from-[#64ffda] to-blue-400 mx-auto mt-4"
+          />
+        </div>
+        <motion.div
+          initial={{ width: 0 }}
+          whileInView={{ width: 60 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="h-1 bg-gradient-to-l from-transparent to-[#64ffda]"
+        />
+      </div>
 
       <div className="w-full max-w-5xl mb-12 px-4 md:px-12"> 
         <div className="overflow-hidden rounded-2xl">

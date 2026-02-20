@@ -69,9 +69,37 @@ export default function Skills() {
 
   return (
     <section id="skills" className="py-20 max-w-4xl mx-auto px-4">
-      <h3 className="text-2xl font-bold text-[#e6f1ff] mb-12 flex items-center">
-        <span className="text-[#64ffda] font-mono mr-2 text-xl">02.</span> Compétences
-      </h3>
+      <div className="flex items-center gap-4 mb-16">
+        <motion.div
+          initial={{ width: 0 }}
+          whileInView={{ width: 60 }}
+          transition={{ duration: 0.8 }}
+          className="h-1 bg-gradient-to-r from-transparent to-[#64ffda]"
+        />
+        <div className="text-center flex-1">
+
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="text-4xl md:text-5xl font-bold text-[#e6f1ff] mt-2"
+          >
+            Compétences
+          </motion.h2>
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: 120 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="h-1 bg-gradient-to-r from-[#64ffda] to-blue-400 mx-auto mt-4"
+          />
+        </div>
+        <motion.div
+          initial={{ width: 0 }}
+          whileInView={{ width: 60 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="h-1 bg-gradient-to-l from-transparent to-[#64ffda]"
+        />
+      </div>
 
       <div className="space-y-4">
         {categories.map((category) => (
