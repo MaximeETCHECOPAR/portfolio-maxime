@@ -12,26 +12,30 @@ export default function Projects() {
       tagKey: "cvSearchTag",
       descKey: "cvSearchDesc",
       tech: ["Python","Docker","Elastic","Streamlit"],
+      image: "/portfolio-maxime/group_cva.jpg",
     },
     {
       titleKey: "gureKultura",
       tagKey: "gureKulturaTag",
       descKey: "gureKulturaDesc",
       tech: ["Twig","Tailwind CSS","HTML/CSS","JavaScript", "MySQL"],
-      github: "https://github.com/LilouDUFAU/GureKultura"
+      github: "https://github.com/LilouDUFAU/GureKultura",
+      image: "/portfolio-maxime/GureKultura_ancien.png",
     },
     {
       titleKey: "avizons",
       tagKey: "avizonsTag",
       descKey: "avizonsDesc",
       tech: ["Angular","Echarts","Leaflet", "FastAPI", "PostgreSQL", "PostGis"],
+      image: "/portfolio-maxime/bientot_dispo.png",
     },
     {
       titleKey: "myPortfolioTitle",
       tagKey: "myPortfolioTag",
       descKey: "myPortfolioDesc",
       tech: ["React","Tailwind CSS","JavaScript","Vite"],
-      github: "https://github.com/MaximeETCHECOPAR/portfolio-maxime"
+      github: "https://github.com/MaximeETCHECOPAR/portfolio-maxime",
+      image: "/portfolio-maxime/logo_ME.png",
     }
   ];
 
@@ -81,9 +85,13 @@ export default function Projects() {
             <div className="w-full bg-[#112240] border border-slate-700/50 rounded-2xl p-8 shadow-2xl transition-all duration-300 hover:border-blue-400/30">
               <div className="flex flex-col md:flex-row gap-8 items-center">
                 
-                {/* Image Placeholder */}
-                <div className="w-full md:w-1/3 h-40 bg-slate-800 rounded-lg flex items-center justify-center text-slate-500 font-mono text-xs border border-slate-700">
-                  IMAGE_PREVIEW
+                {/* Image */}
+                <div className="w-full md:w-1/3 h-40 rounded-lg overflow-hidden border border-slate-700 shadow-lg">
+                  <img 
+                    src={p.image} 
+                    alt={t(p.titleKey)}
+                    className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                  />
                 </div>
 
                 <div className="flex-1">
