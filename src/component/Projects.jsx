@@ -86,7 +86,7 @@ export default function Projects() {
           </article>
         ))}
       </div>
-      <div className="h-[20vh]"></div>
+      <div className="h-[8vh]"></div>
     </section>
   );
 }
