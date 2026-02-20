@@ -131,3 +131,40 @@ body {
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
+/* Effet d'assombrissement progressif des cartes du dessous */
+.project-card-sticky {
+  transition: transform 0.3s ease-out;
+}
+
+/* La carte qui est "dessous" devient plus sombre et s'écrase légèrement */
+.project-card-sticky:not(:last-child) {
+  margin-bottom: 5rem;
+}
+
+/* Animation au scroll : nécessite un navigateur moderne */
+@supports (view-timeline-name: --stack) {
+  .project-card-sticky {
+    view-timeline-name: --stack;
+    view-timeline-axis: block;
+    animation: linear scale-down both;
+    animation-timeline: --stack;
+    animation-range: exit 0% exit 100%;
+  }
+
+  @keyframes scale-down {
+    to {
+      transform: scale(0.9) translateY(-20px);
+      opacity: 0.5;
+      filter: blur(2px);
+    }
+  }
+}
+
+/* Scrollbar invisible mais fonctionnelle pour un look plus "App" */
+body::-webkit-scrollbar {
+  display: none;
+}
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
