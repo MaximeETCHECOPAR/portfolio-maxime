@@ -14,6 +14,7 @@ export default function Skills() {
         { name: 'HTML/CSS', slug: 'html5' },
         { name: 'Bootstrap', slug: 'bootstrap' },
         { name: 'TailwindCSS', slug: 'tailwindcss' },
+        { name: 'ECharts', slug: 'echarts' },
       ],
     },
     {
@@ -22,8 +23,11 @@ export default function Skills() {
       items: [
         { name: 'Laravel', slug: 'laravel' },
         { name: 'PHP', slug: 'php' },
+        { name: 'Twig', slug: 'twig' },
+        { name: 'Streamlit', slug: 'streamlit' },
         { name: 'WordPress', slug: 'wordpress' },
         { name: 'Python', slug: 'python' },
+        { name: 'Python (ETL)', slug: 'python' },
       ],
     },
     {
@@ -33,6 +37,8 @@ export default function Skills() {
         { name: 'MySQL', slug: 'mysql' },
         { name: 'MongoDB', slug: 'mongodb' },
         { name: 'Elasticsearch', slug: 'elasticsearch' },
+        { name: 'PostgreSQL', slug: 'postgresql' },
+        { name: 'PostGIS', slug: 'postgis' },
       ],
     },
     {
@@ -100,11 +106,21 @@ export default function Skills() {
                           key={item.name}
                           className="bg-[#0a192f] p-4 rounded flex flex-col items-center justify-center space-y-3 border border-transparent hover:border-[#64ffda]/50 transition-all group"
                         >
-                          <img 
-                            src={src} 
-                            alt={item.name} 
-                            className="h-8 w-8 grayscale group-hover:grayscale-0 transition-all" 
-                          />
+                                <img
+                                  src={src}
+                                  alt={item.name}
+                                  className="h-8 w-8 grayscale group-hover:grayscale-0 transition-all"
+                                  onError={(e) => {
+                                    const initials = item.name
+                                      .split(/\s+/)
+                                      .map((s) => s[0])
+                                      .slice(0, 2)
+                                      .join("")
+                                      .toUpperCase();
+                                    const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64'><rect width='100%' height='100%' fill='%23202a37'/><text x='50%' y='50%' font-size='28' fill='%23cbd5e1' font-family='Inter, system-ui, sans-serif' dominant-baseline='middle' text-anchor='middle'>${initials}</text></svg>`;
+                                    e.currentTarget.src = `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+                                  }}
+                                />
                           <span className="text-xs font-mono text-[#ccd6f6]">{item.name}</span>
                         </div>
                       );
