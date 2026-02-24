@@ -87,7 +87,7 @@ export default function Hero() {
             <img 
               src="/portfolio-maxime/cv_maxime_photo.jpg"
               alt="Maxime" 
-              className="relative w-56 h-56 md:w-72 md:h-72 rounded-full object-cover border-2 border-[#64ffda]/30 shadow-2xl"
+              className="relative w-56 h-56 md:w-72 md:h-72 rounded-full object-cover border-2 border-[#64ffda]/30 shadow-2xl grayscale group-hover:grayscale-0 transition duration-500"
             />
           </div>
           <div className="text-center">
