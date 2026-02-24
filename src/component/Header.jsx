@@ -60,7 +60,7 @@ export default function Header() {
                 className="w-16 h-16 rounded-full overflow-hidden border-2 border-[#64ffda]/40 shadow-lg cursor-pointer transition-all hover:border-[#64ffda] hover:shadow-[0_0_15px_rgba(100,255,218,0.3)] bg-white" 
                 >
                 <img 
-                    src="/portfolio-maxime/logo_ME.png" 
+                    src="/portfolio-maxime/logo_ME_carre.png" 
                     alt="Logo" 
                     className="w-full h-full object-cover scale-180"
                 />

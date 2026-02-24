@@ -35,7 +35,7 @@ export default function Projects() {
       descKey: "myPortfolioDesc",
       tech: ["React","Tailwind CSS","JavaScript","Vite"],
       github: "https://github.com/MaximeETCHECOPAR/portfolio-maxime",
-      image: "/portfolio-maxime/logo_ME.png",
+      image: "/portfolio-maxime/logo_ME_carre.png",
     }
   ];
 
