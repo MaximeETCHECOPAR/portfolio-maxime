@@ -1,12 +1,21 @@
 import React, { useState, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LanguageContext } from '../context/LanguageContext';
+import { ArrowUp } from 'lucide-react'; // Import de l'icône
 
 export default function Footer() {
   const { t } = useContext(LanguageContext);
   const [showTooltip, setShowTooltip] = useState(false);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   return (
-    <footer className="w-full py-12 px-6 border-t border-white/5 bg-[#0a192f] mt-20">
+    <footer className="w-full py-12 px-6 border-t border-white/5 bg-[#0a192f] mt-20 relative overflow-visible">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
         
         {/* Partie Gauche : Copyright */}
@@ -17,40 +26,19 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Partie Centrale : Photo avec Info-bulle dynamique */}
-        <div className="relative">
-          {/* Photo de profil miniature */}
-          <motion.div 
-            onMouseEnter={() => setShowTooltip(true)}
-            onMouseLeave={() => setShowTooltip(false)}
-            whileHover={{ scale: 1.05 }}
-            className="w-14 h-14 rounded-xl overflow-hidden border-2 border-[#64ffda]/40 shadow-xl cursor-pointer transition-all hover:border-[#64ffda] hover:shadow-[0_0_20px_rgba(100,255,218,0.3)]"
+        {/*Le bouton de retour en haut*/}
+        <div className="flex items-center justify-right">
+          <motion.button
+            onClick={scrollToTop}
+            whileHover={{ y: -5, scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="group relative flex flex-col items-center gap-2"
           >
-            <img 
-              src="/portfolio-maxime/cv_maxime_photo.jpg" 
-              alt="Maxime" 
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
+            <div className="w-12 h-12 rounded-full bg-[#112240] border border-[#64ffda]/30 flex items-center justify-center text-[#64ffda] shadow-lg group-hover:border-[#64ffda] group-hover:shadow-[0_0_15px_rgba(100,255,218,0.2)] transition-all">
+              <ArrowUp size={24} />
+            </div>            
+          </motion.button>
         </div>
-
-        {/* Partie Droite : Navigation Navigation */}
-        <nav className="flex items-center gap-3">
-          {[
-            { key: 'footerHome', href: '#' },
-            { key: 'myProjects', href: '#projects' },
-            { key: 'contactMe', href: '#contact' }
-          ].map((item) => (
-            <a
-              key={item.key}
-              href={item.href}
-              className="px-5 py-2 bg-[#112240] text-[#ccd6f6] text-sm font-medium rounded-full border border-white/5 hover:bg-[#233554] hover:text-[#64ffda] transition-all shadow-[0_4px_20px_rgba(0,0,0,0.3)]"
-            >
-              {t(item.key)}
-            </a>
-          ))}
-        </nav>
-
       </div>
     </footer>
   );
