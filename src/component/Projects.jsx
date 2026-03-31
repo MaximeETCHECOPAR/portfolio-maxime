@@ -27,7 +27,7 @@ export default function Projects() {
       tagKey: "avizonsTag",
       descKey: "avizonsDesc",
       tech: ["Angular","Echarts","Leaflet", "FastAPI", "PostgreSQL", "PostGis"],
-      image: "/portfolio-maxime/bientot_dispo.png",
+      image: "/portfolio-maxime/avizons_screen.png",
     },
     {
       titleKey: "myPortfolioTitle",
